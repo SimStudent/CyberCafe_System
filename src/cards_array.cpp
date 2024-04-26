@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+#include "cards_array.h"
+
 #define Status int
 
 using namespace std;
@@ -20,12 +22,21 @@ struct cardsArray{
 };
 
 
+struct cardsArray cardsList;
+
+
+bool isRegistered(int id,){
+	if()
+}
+
+
 bool isValid(string personal_id);
 
 void init_card(cardsArray cardsList,string personal_id,int value=0){
 	if(!isValid(personal_id))return;
 	int index = cardsList.tail;
 	
+	cardsList.elems[index].registered = true;
 	cardsList.elems[index].personal_id = personal_id;
 	cardsList.elems[index].value = value;
 
@@ -42,13 +53,12 @@ Status delete_card(cardsArray cardsList,int id){  // 通过id来删除卡
 
 
 
-struct cardsArray cardsList;
+
 
 int main(){
 	cout<<"Card | Test for the function"<<endl;  // 多文件编译是否可以有多个main函数？
 //	cout<< (cardsList.elems[0].personal_id == nullptr) <<endl;
 	cout<<cardsList.elems[0].registered<<endl;
 	cout<<cardsList.elems[0].value<<endl;
-	
-	
+
 }
