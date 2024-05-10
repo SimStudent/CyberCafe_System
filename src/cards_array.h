@@ -3,9 +3,17 @@
 
 using namespace std;
 
-struct card;
+struct card{
+    bool registered;
+    string personal_id;
+    int value;
+};
 
-struct cardsArray;
+struct cardsArray{
+    struct card elems[10000001];
+    int tail=1;
+    int quantity = 0;
+};
 
 bool isRegistered(int id);
 

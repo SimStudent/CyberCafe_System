@@ -10,41 +10,44 @@ using namespace std;
  Cards' definition
 */
 
-struct card{
-	bool registered;
-	string personal_id;  // 身份证号码的识别
-	int value;
-};
-
-struct cardsArray{
-	struct card elems[10000001];
-	int tail=1;
-	int quantity=0;
-};
+//struct card{
+//	bool registered;
+//	string personal_id;  // 身份证号码的识别
+//	int value;
+//};
+//
+//struct cardsArray{
+//	struct card elems[10000001];
+//	int tail=1;
+//	int quantity=0;
+//};
 
 
 struct cardsArray cardsList;
 
 // ------------------------------
 
-void duqu08(){  // TODO 不好，准备使用正则表达式
-	std::string str = "HBK08";
-	int lastDigit = -1; // 初始化为-1，如果没有找到数字则保持不变
-	
-	for (char& ch : str) { // 使用范围for循环
-		if (std::isdigit(ch)) {
-			lastDigit = ch - '0'; // 将字符'0'到'9'转换为对应的整数值0到9
-			break; // 找到数字后退出循环
-		}
-	}
-	
-	if (lastDigit != -1) {
-		std::cout << "找到的数字是: " << lastDigit << std::endl;
-	} else {
-		std::cout << "没有找到数字。" << std::endl;
-	}
-	
-}
+/*
+  以下是使用isdigit进行字符串匹配，不好，准备使用正则表达式
+*/
+//void duqu08(){  
+//	std::string str = "HBK08";
+//	int lastDigit = -1; // 初始化为-1，如果没有找到数字则保持不变
+//	
+//	for (char& ch : str) { // 使用范围for循环
+//		if (std::isdigit(ch)) {
+//			lastDigit = ch - '0'; // 将字符'0'到'9'转换为对应的整数值0到9
+//			break; // 找到数字后退出循环
+//		}
+//	}
+//	
+//	if (lastDigit != -1) {
+//		std::cout << "找到的数字是: " << lastDigit << std::endl;
+//	} else {
+//		std::cout << "没有找到数字。" << std::endl;
+//	}
+//	
+//}
 
 
 bool isRegistered(int id){
@@ -60,11 +63,19 @@ Status isValid(string person_id){  // 用来测试输入的身份证是否合法
 	
 }
 
-void printMan(int id){ // 识别身份证字符串
+void printMan(int id){ // TODO 识别身份证字符串
 	if(!isRegistered(id))return;
+	
+}
+
+void printArray(cardsArray elemList){
+	cout<<"卡号信息"<<endl;
+	if(elemList.quantity==0)return;
+	
 	
 	
 }
+
 
 void init_card(string personal_id,int value=0){
 	if(!isValid(personal_id))return;
@@ -85,6 +96,9 @@ Status delete_card(cardsArray cardsList,int id){  // 通过id来删除卡，应�
 		temp->registered = false;
 		temp->personal_id = "";
 		temp->value = 0;
+		
+		cardsList.quantity--;
+		
 		return 1;
 	}
 }
