@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include "cards_array.h"
+#include <regex>
 
 #define Status int
 
@@ -26,7 +27,7 @@ struct cardsArray cardsList;
 
 // ------------------------------
 
-void duqu08(){  // TODO
+void duqu08(){  // TODO 不好，准备使用正则表达式
 	std::string str = "HBK08";
 	int lastDigit = -1; // 初始化为-1，如果没有找到数字则保持不变
 	
