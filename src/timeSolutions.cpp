@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include "timeSolutions.h"
 using namespace std;
 
 // This module is built to solve the time.
@@ -41,10 +41,10 @@ void printTime(tm *aTime){
 }
 
 
-int main(){
+// int main(){
 	
-	tm* aTime = getRecentTime();
-	printTime(aTime);
+// 	tm* aTime = getRecentTime();
+// 	printTime(aTime);
 	
-	return 0;
-}
+// 	return 0;
+// }

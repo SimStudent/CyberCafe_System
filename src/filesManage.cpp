@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "cards_array.h"
+#include "cardsArray.h"
 using namespace std;
 
 char cardsAddress[] = "cards.dat";
@@ -15,24 +15,28 @@ void cardsWrite(cardsArray target){
 	}
 	struct card elem;
 	
+	fwrite(&target,sizeof(target),1,fp);
 	
-	
-	fread()
-	
-}
-
-
-void cardsLoad(){
-	FILE *fp = fopen(cardsAddress,"rb");
+	fclose(fp);
 	
 }
 
+// void cardsLoad(cardsArray target){
+// 	FILE *fp = fopen(cardsAddress,"rb");
+	
+// 	fread(target,sizeof(target),1,fp)
 
-int main(){
-	cardsArray cardsList;
-	cout<<"Card | Test for the function"<<endl;  // 多文件编译是否可以有多个main函数？
-	cout<< (cardsList.elems[0].personal_id.empty()) <<endl;
-	cout<<cardsList.elems[0].registered<<endl;
-	cout<<cardsList.elems[0].value<<endl;
-	return 0;
-}
+// 	fclose(fp);
+// 	//TODO
+	
+// }
+
+
+// int main(){
+// 	cardsArray cardsList;
+// 	cout<<"Card | Test for the function"<<endl;  // 多文件编译是否可以有多个main函数？
+// 	cout<< (cardsList.elems[0].personal_id.empty()) <<endl;
+// 	cout<<cardsList.elems[0].registered<<endl;
+// 	cout<<cardsList.elems[0].value<<endl;
+// 	return 0;
+// }
