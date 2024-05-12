@@ -103,14 +103,7 @@ Status delete_card(cardsArray cardsList,int id){  // 通过id来删除卡，应�
 	}
 }
 
-
-
-
-
-// int main(){
-// 	cout<<"Card | Test for the function"<<endl;  // 多文件编译是否可以有多个main函数？
-// 	cout<< (cardsList.elems[0].personal_id.empty()) <<endl;
-// 	cout<<cardsList.elems[0].registered<<endl;
-// 	cout<<cardsList.elems[0].value<<endl;
-
-// }
+//
+//int main(){
+//	
+//}
