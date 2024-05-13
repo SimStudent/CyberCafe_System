@@ -1,7 +1,14 @@
 #include <bits/stdc++.h>
+
+#include <sys/stat.h>  // 用于创造文件的mkdir
+#include <sys/types.h>
+
+#include <unistd.h>   // 用于判断文件是否存在
+
 #define Status int
 using namespace std;
 
+const char DATA_ADDR[] = "data";
 const char PERMISSIONS_ADDR[] = "data/managers.dat";
 
 struct manager{
@@ -29,7 +36,7 @@ Status destroyManageList(managerNode **head);  // 销毁整条链表
 
 Status writeManageList(managerNode *head);  // 将权限通过流写入的文件之中（二进制模式）
 
-Status loadManageList(managerNode *head);  // 从文件中读取权限（二进制模式）
+Status loadManageList(managerNode **head);  // 从文件中读取权限（二进制模式）
 
 
 // -------  杂项

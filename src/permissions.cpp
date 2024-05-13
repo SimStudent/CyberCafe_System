@@ -60,7 +60,7 @@ Status destroyManageList(managerNode **head){
 		p = p->next;
 		free(q);
 	}
-	*head = NULL;  // p和q不置空是因为离开函数后就会销毁,head置空是因为其不销毁
+	*head = NULL;  // p和q不置空是因为离开函数后就会销毁,head置空是因为其在该栈定义域内不销毁
 	return 1;
 }
 
@@ -73,20 +73,23 @@ Status writeManageList(managerNode *head){
 	
 	managerNode *ptr = head;
 	while(ptr!=NULL){
-		fwrite(ptr,sizeof(ptr),1,fp);
+		fwrite(ptr,sizeof(managerNode),1,fp);
 		ptr = ptr->next;
 	}
 	fclose(fp);
 	return 1;
 }
 
-Status loadManageList(managerNode *head){  //TODO
+Status loadManageList(managerNode **head){  //TODO
 	FILE *fp;
 	if((fp = fopen(PERMISSIONS_ADDR,"rb")) == NULL){
 		cout<<PERMISSIONS_ADDR<<"|The opening operation is worng!"<<endl;
 		return 0;
 	}
-	managerNode *ptr = head;
+	initManageList(head);
+	
+	
+	
 	
 	
 	return 1;
@@ -131,9 +134,50 @@ void printManageList(managerNode *head){
 }
 
 int main(){
-	fopen(PERMISSIONS_ADDR,"w");  // TODO:fopen 创造 读取 检测 文件夹内文件
-	if(fopen(PERMISSIONS_ADDR,"w"))cout<<"存在该文件";
-	else cout<<"不存在";
+//	FILE *fp = fopen(PERMISSIONS_ADDR,"w");  // TODO:fopen 创造 读取 检测 文件夹内文件
+	
+	// 对文件流的预处理
+	
+//	cout<<access("HBK08.txt",F_OK);
+	
+	
+	
+	managerNode *head;
+	
+	if((mkdir(DATA_ADDR)) == 0)cout<<"Directory created successfully"<<endl;
+	else cout<<"Failed to create directory: maybe because its exist."<<endl;
+	
+	if(access(PERMISSIONS_ADDR,F_OK) == 0){
+		// 存在该文件
+		loadManageList(&head);
+	}
+	else{
+		// 不存在该文件
+		initManageList(&head);
+		writeManageList(head);
+	}
+	
+	// 经过一系列操作
+	
+	
+	
+	
+	
+	
+	
+	
+	// 创建目录
+//	int ret = mkdir("asshole");
+//	if(ret == 0)cout<<"Directroy created successfully"<<endl;
+//	else cout<<"Failed to create directory"<<endl;
+	
+//	FILE *fp;
+//	cout<<PERMISSIONS_ADDR;
+//	fp = fopen("data\\managers.dat","w");
+//	
+	
+//	if(fopen(PERMISSIONS_ADDR,"w"))cout<<"存在该文件";
+//	else cout<<"不存在";
 }
 
 
