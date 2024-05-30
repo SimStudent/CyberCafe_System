@@ -1,43 +1,52 @@
+#ifndef cardsLinkedList
+#define cardsLinkedList
+
 #include <bits/stdc++.h>
-#define Status int
+
+#include <sys/stat.h>    // 用于创造文件的mkdir
+#include <sys/types.h>
+
+#include <unistd.h>  // 判断文件是否存在
+
+#include <cstring>  // 用处字符串处理
 
 using namespace std;
 
+extern const char DATA_ADDR[];
+
+const char CARDS_ADDR[] = "data/cards.txt";
+
 struct card{
 	int id;
-	int value;
+	char pwd[10];
+	int value;  // 头节点value为元素个数
 };
 
 struct cardNode{
-	struct card data;
+	card data;
 	cardNode *next;
 };
 
+
+//extern cardNode *head;
+
 // ------------------------
 
-Status initCardsList(cardNode **head);  // 初始化链表的头节点
+void initCard(cardNode **head);
 
-cardNode* searchCard(cardNode *head,int id); // 根据名称找对象。找到就返回一个对象（可修改的），找不到就返回NULL
+void addCard(cardNode *head,int id,int value,char *pwd);
 
-Status insertCardsList(cardNode *head,card x);  // 给链表头插一个card对象（检测是否有同名）
+cardNode * searchCard(cardNode *head,int id);
 
-Status deleteCard(cardNode *head,string name);  // 根据名称删除
+void deleteCard(cardNode *head,int id);
 
-Status destroyCardsList(cardNode **head);  // 销毁整条链表
+void writeCard(cardNode *head);
 
-Status writeCardsList(cardNode *head);  // 将卡号数据通过流写入的文件之中（二进制模式）
+void loadCard(cardNode *head);
 
-Status loadCardsList(cardNode **head);  // 从文件中读取权限（二进制模式）
+void initCardsFromFiles(cardNode **head);
+
+void printfCards(cardNode *head);
 
 
-// -------  杂项
-
-card newCard(int super,string name,string password);  // 构造一个card对象
-
-cardNode * packCard(card x); // 元素装箱，使用值传递
-
-int countCardsList(cardNode *head);  // 通过头节点来获取card对象的多少
-
-// -------  测试
-
-void printCardsList(cardNode *head);  // 测试用途：遍历访问打印整个链表（包括头信息，以及各个节点的具体信息）
+#endif

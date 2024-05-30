@@ -19,10 +19,24 @@ struct tm{
 }
 */
 
+//char dayMap[] = "1234567";
+//char dayMap[] = "一二三四五六日";  // TODO：宽字符处理
+//wchar_t dayMap_4[] =  L"一二三四五六日";
+//
+//wstring dayMap_2 = L"一二三四五六日";
+//string dayMap_3 = "一二三四五六日";
+
+
 tm * getRecentTime(){  
 	time_t now = time(0);
-	tm* localTime = localtime(&now);
+	tm* localTime = localtime(&now);  // 将时间改为当地时间
 	return localTime;
+}
+
+double diffInSecond(tm *big,tm *small){
+	time_t bigStamp = mktime(big);  // 将tm结构转变为time_t时间戳
+	time_t smallStamp = mktime(small);
+	return difftime(bigStamp,smallStamp);
 }
 
 void printTime(tm *aTime){
@@ -36,15 +50,37 @@ void printTime(tm *aTime){
 	
 	int wday = aTime->tm_wday;
 	
-	cout<<"Now time|"<<endl;
-	cout<<year<<'/'<<month<<'/'<<day<<' '<<hour<<':'<<min<<':'<<second<<" 星期"<<wday<<endl;
+//	cout<<year<<'/'<<month<<'/'<<day<<' '<<hour<<':'<<min<<':'<<second<<" 星期"<<wday;
+	
+	cout<<year<<'/'<<month<<'/'<<day<<' '<<hour<<':'<<setw(2)<<setfill('0')<<min<<" 星期"<<wday;
 }
 
-
-// int main(){
+td createTimeDifference(double dTime){
+	td res;
 	
+	res.iHour = dTime / 60 / 60;
+	res.iMin = dTime / 60;
+	res.iSec = dTime;
+
+	return res;
+	
+}
+
+//int main(){
+//	time_t a = time(0);
+//	Sleep(2000);
+//	time_t b  = time(0);
+//	
+//	double dTime =  difftime(b,a);
+//	
+//	td aDifference = createTimeDifference(dTime);
+//	
+//	
+//	cout<<aDifference.iHour<<" "<<aDifference.iMin<<" "<<aDifference.iSec;
+//}
+
+
+// void useTime(){  // 用法
 // 	tm* aTime = getRecentTime();
 // 	printTime(aTime);
-	
-// 	return 0;
 // }
