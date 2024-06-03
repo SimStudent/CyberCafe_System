@@ -6,13 +6,21 @@
 
 #include "cardsLinkedList.h"
 #include "chargesLinkedList.h"
+#include "recordsLinkedList.h"
+#include "permsLinkedList.h"
+
 #include "timeSolutions.h"
+
+#include "color.h"
 
 using namespace std;
 
 extern cardNode * cardHead;
 extern chargeNode * chargeHead;
+extern recordNode * recordHead;
+extern permNode * permHead;
 
+extern permNode * currPerm;
 
 void menu();
 void menu_1();
@@ -45,6 +53,7 @@ void menu_53();
 void menu_61();
 void menu_62();
 void menu_63();
+void menu_64();
 
 void menu_71();
 void menu_72();

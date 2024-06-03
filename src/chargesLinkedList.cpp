@@ -4,7 +4,7 @@ void initCharge(chargeNode **head){
 	*head = (chargeNode *)malloc(sizeof(chargeNode)); 
 	(*head)->data.id = 0;
 	(*head)->data.fee = 0;
-	strcpy((*head)->data.desc,"菜鸟区");
+	strcpy((*head)->data.desc,"头节点");
 	(*head)->next = nullptr;
 }
 
@@ -111,7 +111,7 @@ void initChargesFromFiles(chargeNode **a){  // 文件流的初始化
 
 void printfCharges(chargeNode *head){
 	chargeNode * ptr = head;
-	cout<<"ChargesLinkedList | 有 "<<ptr->data.fee<<" 个标准"<<endl;
+	cout<<"ChargesLinkedList | 有 "<<ptr->data.id<<" 个标准"<<endl;
 	
 	ptr = ptr->next;
 	

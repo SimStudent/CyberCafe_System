@@ -27,60 +27,64 @@ struct tm{
 //string dayMap_3 = "一二三四五六日";
 
 
-tm * getRecentTime(){  
+//tm * getRecentTime_copy(){    // 为什么两次调用会一样，因为每次调用localtime返回的是缓冲区的内容
+//	time_t now = time(0);        
+//	tm* local = localtime(&now);  // 将时间改为当地时间
+//	return local;
+//}
+
+tm getRecentTime(){
 	time_t now = time(0);
-	tm* localTime = localtime(&now);  // 将时间改为当地时间
-	return localTime;
+	tm local = *localtime(&now);  // 将时间改为当地时间
+	return local;
 }
 
-double diffInSecond(tm *big,tm *small){
-	time_t bigStamp = mktime(big);  // 将tm结构转变为time_t时间戳
-	time_t smallStamp = mktime(small);
-	return difftime(bigStamp,smallStamp);
-}
 
-void printTime(tm *aTime){
-	int year = aTime->tm_year + 1900;
-	int month = aTime->tm_mon + 1;
-	int day = aTime->tm_mday;
+void printTime(tm aTime){
+	int year = aTime.tm_year + 1900;
+	int month = aTime.tm_mon + 1;
+	int day = aTime.tm_mday;
 	
-	int hour = aTime->tm_hour;
-	int min = aTime->tm_min;
-	int second = aTime->tm_sec;
+	int hour = aTime.tm_hour;
+	int min = aTime.tm_min;
+	int second = aTime.tm_sec;
 	
-	int wday = aTime->tm_wday;
+	int wday = aTime.tm_wday;
 	
 //	cout<<year<<'/'<<month<<'/'<<day<<' '<<hour<<':'<<min<<':'<<second<<" 星期"<<wday;
 	
 	cout<<year<<'/'<<month<<'/'<<day<<' '<<hour<<':'<<setw(2)<<setfill('0')<<min<<" 星期"<<wday;
 }
 
-td createTimeDifference(double dTime){
+td createTimeDifference(tm big,tm small){
+	time_t bigStamp = mktime(&big);        // 将 tm 结构体转为 time_t 时间戳，方便后续计算
+	time_t smallStamp = mktime(&small);
+	
+	double diff = difftime(bigStamp,smallStamp);
+	
+	cout<<"diff:"<<diff<<endl;
+	
 	td res;
+	res.iHour = diff/60/60;
+	res.iMin = diff/60;
+	res.iSec = diff;
 	
-	res.iHour = dTime / 60 / 60;
-	res.iMin = dTime / 60;
-	res.iSec = dTime;
-
+	cout<<res.iHour<<" "<<res.iMin<<" "<<res.iSec<<endl;
+	
 	return res;
-	
 }
 
+
 //int main(){
-//	time_t a = time(0);
-//	Sleep(2000);
-//	time_t b  = time(0);
+//	tm a = getRecentTime();
+//	Sleep(10000);
+//	tm b = getRecentTime();
 //	
-//	double dTime =  difftime(b,a);
+//	printTime(a);cout<<endl;
+//	printTime(b); cout<<endl;
 //	
-//	td aDifference = createTimeDifference(dTime);
-//	
+//	td aDifference = createTimeDifference(b,a);
 //	
 //	cout<<aDifference.iHour<<" "<<aDifference.iMin<<" "<<aDifference.iSec;
 //}
 
-
-// void useTime(){  // 用法
-// 	tm* aTime = getRecentTime();
-// 	printTime(aTime);
-// }
